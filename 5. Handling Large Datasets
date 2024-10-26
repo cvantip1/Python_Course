@@ -1,0 +1,4 @@
+Introduction to Databases: Connecting to databases using Python (SQLAlchemy, psycopg2)
+SQL in Python: Executing queries, joins, filtering
+Introduction to Hadoop: Overview, HDFS, interaction with Python
+Pandas with Large Data: Efficient data processing (chunking, memory usage)
