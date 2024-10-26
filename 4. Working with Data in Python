@@ -1,0 +1,5 @@
+NumPy Basics: Arrays, indexing, basic operations, broadcasting
+Pandas Introduction: DataFrames, Series, indexing, slicing
+Data Cleaning with Pandas: Handling missing data, transformations
+Data Aggregation and Grouping: GroupBy, aggregations, pivot tables
+Merging and Joining: Concatenation, joins, merges
