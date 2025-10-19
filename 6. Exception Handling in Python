@@ -1,0 +1,147 @@
+# Python Academy Course - Module 7
+
+## Lesson 7.1 — Exception Handling in Python (Very Detailed)
+
+---
+
+### 🌟 Learning Goal:
+
+> Understand what exceptions are, how to catch and handle them gracefully using `try`, `except`, `finally`, and raise custom errors in Python.
+
+---
+
+## 🔢 1. What is an Exception?
+
+* An **exception** is an error that occurs **during the execution of a program**.
+* If not handled, the program will stop (crash).
+* Exception handling allows you to catch errors and continue or exit gracefully.
+
+**Example of a crash without handling:**
+
+```python
+x = 5 / 0  # ZeroDivisionError
+```
+
+---
+
+## 🔢 2. Basic Try-Except Block
+
+**Syntax:**
+
+```python
+try:
+    # code that might raise an error
+except ErrorType:
+    # what to do if that error occurs
+```
+
+**Example:**
+
+```python
+try:
+    result = 10 / 0
+except ZeroDivisionError:
+    print("Cannot divide by zero.")
+```
+
+---
+
+## 🔢 3. Handling Multiple Exceptions
+
+```python
+try:
+    x = int(input("Enter a number: "))
+    y = 10 / x
+except ZeroDivisionError:
+    print("Cannot divide by zero.")
+except ValueError:
+    print("Invalid input. Please enter a number.")
+```
+
+You can also handle all exceptions with:
+
+```python
+except Exception as e:
+    print("Error:", e)
+```
+
+> **Note**: Using `Exception` is okay during testing, but you should catch specific errors in real applications.
+
+---
+
+## 🔢 4. The `else` and `finally` Blocks
+
+* `else`: runs **if no exception occurs**.
+* `finally`: runs **no matter what** (cleanup code).
+
+```python
+try:
+    value = int(input("Enter age: "))
+except ValueError:
+    print("Invalid input")
+else:
+    print("Age is", value)
+finally:
+    print("Execution complete")
+```
+
+---
+
+## 🔢 5. Raising Custom Exceptions
+
+You can raise your own exceptions using the `raise` keyword:
+
+```python
+def check_salary(salary):
+    if salary < 0:
+        raise ValueError("Salary cannot be negative")
+    return salary
+
+check_salary(-5000)  # Raises ValueError
+```
+
+---
+
+## 🔢 6. Common Exception Types
+
+| Exception Name      | Description                      |
+| ------------------- | -------------------------------- |
+| `ZeroDivisionError` | Dividing by zero                 |
+| `ValueError`        | Wrong type passed to function    |
+| `TypeError`         | Incompatible types               |
+| `IndexError`        | Index out of range in list/tuple |
+| `KeyError`          | Key not found in dictionary      |
+| `FileNotFoundError` | File path incorrect or missing   |
+
+---
+
+## 🛠️ Hands-On Exercise 7.1
+
+1. Write a program that takes two numbers and divides them.
+
+   * Handle `ZeroDivisionError` and `ValueError`
+2. Add a `finally` block to always print "End of operation"
+3. Create a function `get_age()` that raises `ValueError` if age is negative.
+
+---
+
+## 🔍 Mini Quiz 7.1
+
+1. What is the purpose of a `try` block?
+2. When does the `finally` block run?
+3. What error occurs when you access an index that doesn’t exist in a list?
+4. Write a `try-except` block that catches a `ValueError`.
+
+---
+
+## 🔹 Summary of Lesson 7.1
+
+* Use `try`, `except`, `else`, and `finally` to handle errors.
+* Prevent program crashes with exception handling.
+* Catch specific exceptions when possible.
+* Use `raise` to trigger your own exceptions.
+* Exceptions help make programs more user-friendly and robust.
+
+---
+
+*End of Lesson 7.1*
