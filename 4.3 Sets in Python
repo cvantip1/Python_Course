@@ -1,0 +1,167 @@
+# Python Academy Course - Module 5
+
+## Lesson 5.3 — Sets in Python (Very Detailed)
+
+---
+
+### 🌟 Learning Goal:
+
+> Understand what sets are, how they differ from lists/tuples, and how to use set operations to handle unique and unordered collections in Python.
+
+---
+
+## 🔢 1. What is a Set?
+
+* A **set** is an unordered collection of **unique** items.
+* Sets are **mutable** (can be changed), but **cannot contain duplicate values**.
+* Sets are defined using **curly braces `{}`** or the `set()` constructor.
+
+**Example:**
+
+```python
+colors = {"red", "green", "blue"}
+```
+
+---
+
+## 🔢 2. Creating Sets
+
+### a) Using `{}`:
+
+```python
+fruits = {"apple", "banana", "cherry"}
+```
+
+### b) Using `set()` constructor:
+
+```python
+empty_set = set()  # not {}
+```
+
+> `{}` creates an empty dictionary by default!
+
+---
+
+## 🔢 3. Set Properties
+
+* **Unordered**: No indexing, no order guaranteed.
+* **No duplicates**:
+
+```python
+numbers = {1, 2, 2, 3, 3, 3}
+print(numbers)  # Output: {1, 2, 3}
+```
+
+---
+
+## 🔢 4. Accessing and Iterating
+
+You **cannot** access items by index. Use loops:
+
+```python
+for fruit in fruits:
+    print(fruit)
+```
+
+---
+
+## 🔢 5. Adding and Removing Items
+
+### a) `.add()` — add one item:
+
+```python
+fruits.add("mango")
+```
+
+### b) `.update()` — add multiple items:
+
+```python
+fruits.update(["orange", "grape"])
+```
+
+### c) `.remove()` — remove specific item (raises error if not found):
+
+```python
+fruits.remove("apple")
+```
+
+### d) `.discard()` — remove item if it exists (no error):
+
+```python
+fruits.discard("banana")
+```
+
+### e) `.clear()` — remove all items:
+
+```python
+fruits.clear()
+```
+
+---
+
+## 🔢 6. Set Operations
+
+Sets are useful for **mathematical set operations**:
+
+### a) Union — combine all elements
+
+```python
+A = {1, 2, 3}
+B = {3, 4, 5}
+print(A | B)  # {1, 2, 3, 4, 5}
+```
+
+### b) Intersection — common elements
+
+```python
+print(A & B)  # {3}
+```
+
+### c) Difference — items in A but not in B
+
+```python
+print(A - B)  # {1, 2}
+```
+
+### d) Symmetric Difference — not common in either
+
+```python
+print(A ^ B)  # {1, 2, 4, 5}
+```
+
+---
+
+## 🛠️ Hands-On Exercise 5.3
+
+1. Create a set of employee roles: `{"Analyst", "Manager", "Engineer"}`.
+2. Add "Intern" to the set.
+3. Remove "Manager" using `.discard()`.
+4. Create another set: `{"Consultant", "Engineer"}`
+5. Find:
+
+   * Union of both sets
+   * Intersection
+   * Difference (roles in first set but not in second)
+
+---
+
+## 🔍 Mini Quiz 5.3
+
+1. What is the main difference between a set and a list?
+2. Can a set contain duplicate values?
+3. Which method allows you to safely remove an item without error?
+4. What does the `^` operator do between two sets?
+5. What is the output of `{1, 2, 3} & {2, 3, 4}`?
+
+---
+
+## 🔹 Summary of Lesson 5.3
+
+* Sets store unique, unordered items.
+* No duplicates, and no indexing.
+* Use `.add()`, `.update()`, `.remove()`, `.discard()` to manage items.
+* Support union, intersection, difference, and symmetric difference operations.
+
+---
+
+*End of Lesson 5.3*
