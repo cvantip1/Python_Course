@@ -1,0 +1,186 @@
+# Python Academy Course - Module 5
+
+## Lesson 5.4 — Dictionaries in Python (Very Detailed)
+
+---
+
+### 🌟 Learning Goal:
+
+> Understand how to use dictionaries to store and manage key-value pairs, perform lookups, updates, and apply dictionary methods.
+
+---
+
+## 🔢 1. What is a Dictionary?
+
+* A **dictionary** in Python is a collection of **key-value pairs**.
+* Each key is **unique**, and used to access its corresponding value.
+* Dictionaries are **unordered** (before Python 3.7), **mutable**, and enclosed in **curly braces `{}`**.
+
+**Example:**
+
+```python
+employee = {
+    "name": "Alice",
+    "department": "HR",
+    "salary": 6000
+}
+```
+
+---
+
+## 🔢 2. Creating Dictionaries
+
+### a) Using curly braces:
+
+```python
+person = {"name": "John", "age": 30}
+```
+
+### b) Using the `dict()` constructor:
+
+```python
+person = dict(name="John", age=30)
+```
+
+---
+
+## 🔢 3. Accessing Dictionary Values
+
+Use the key to access the value:
+
+```python
+print(employee["name"])     # Alice
+print(employee.get("salary"))  # 6000
+```
+
+### Note:
+
+* `get()` is safer because it doesn't throw an error if the key doesn't exist.
+
+```python
+print(employee.get("bonus", 0))  # Default: 0
+```
+
+---
+
+## 🔢 4. Updating and Adding Values
+
+```python
+employee["salary"] = 7000         # Update existing value
+employee["bonus"] = 1000          # Add new key-value pair
+```
+
+---
+
+## 🔢 5. Removing Items
+
+### a) `.pop()` — remove by key:
+
+```python
+employee.pop("bonus")
+```
+
+### b) `.popitem()` — remove last item (Python 3.7+):
+
+```python
+employee.popitem()
+```
+
+### c) `del` keyword:
+
+```python
+del employee["department"]
+```
+
+### d) `.clear()` — removes all items:
+
+```python
+employee.clear()
+```
+
+---
+
+## 🔢 6. Dictionary Methods
+
+### a) `.keys()`
+
+Returns a list of keys.
+
+```python
+employee.keys()
+```
+
+### b) `.values()`
+
+Returns a list of values.
+
+```python
+employee.values()
+```
+
+### c) `.items()`
+
+Returns all key-value pairs as tuples.
+
+```python
+for key, value in employee.items():
+    print(f"{key}: {value}")
+```
+
+---
+
+## 🔢 7. Checking Key Existence
+
+```python
+if "name" in employee:
+    print("Name is present")
+```
+
+---
+
+## 🔢 8. Nested Dictionaries
+
+You can store dictionaries inside other dictionaries:
+
+```python
+company = {
+    "emp1": {"name": "Alice", "salary": 6000},
+    "emp2": {"name": "Bob", "salary": 5500}
+}
+
+print(company["emp1"]["name"])  # Alice
+```
+
+---
+
+## 🛠️ Hands-On Exercise 5.4
+
+1. Create a dictionary for an employee with name, department, and salary.
+2. Add a new key: "experience" with a value of 5.
+3. Update the salary.
+4. Use `.get()` to retrieve department safely.
+5. Print all key-value pairs using a loop.
+
+---
+
+## 🔍 Mini Quiz 5.4
+
+1. What type of data structure is a dictionary?
+2. How do you access the value of a key called "age"?
+3. Which method gives you all the keys in a dictionary?
+4. How do you safely check if a key exists?
+5. Can dictionary keys be duplicated?
+
+---
+
+## 🔹 Summary of Lesson 5.4
+
+* Dictionaries store data as key-value pairs.
+* Keys must be unique; values can be anything.
+* Use `.get()`, `.keys()`, `.values()`, `.items()` for retrieval.
+* Dictionaries are mutable and support nesting.
+* Widely used for structured, named data.
+
+---
+
+*End of Lesson 5.4*
