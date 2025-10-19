@@ -1,0 +1,158 @@
+# Python Academy Course - Module 6
+
+## Lesson 6.1 — String Manipulation in Python (Very Detailed)
+
+---
+
+### 🌟 Learning Goal:
+
+> Understand how to create, manipulate, and format strings using Python's built-in string methods and operations.
+
+---
+
+## 🔢 1. What is a String?
+
+* A **string** is a sequence of characters enclosed in **single**, **double**, or **triple quotes**.
+* Strings can hold text, numbers (as characters), and special characters.
+
+**Examples:**
+
+```python
+name = "Alice"
+quote = 'Python is powerful'
+multiline = '''This is
+a multiline string'''
+```
+
+---
+
+## 🔢 2. Accessing Characters in a String
+
+Strings are **indexed** like lists:
+
+```python
+name = "Alice"
+print(name[0])     # A
+print(name[-1])    # e
+```
+
+### Slicing:
+
+```python
+print(name[1:4])    # lic
+print(name[:3])     # Ali
+print(name[2:])     # ice
+```
+
+---
+
+## 🔢 3. String Concatenation and Repetition
+
+### a) Concatenation:
+
+```python
+first = "Hello"
+last = "World"
+message = first + " " + last
+```
+
+### b) Repetition:
+
+```python
+laugh = "ha" * 3  # hahaha
+```
+
+---
+
+## 🔢 4. Common String Methods
+
+| Method               | Description                           |
+| -------------------- | ------------------------------------- |
+| `.lower()`           | Converts to lowercase                 |
+| `.upper()`           | Converts to uppercase                 |
+| `.title()`           | Capitalizes first letter of each word |
+| `.strip()`           | Removes spaces from beginning and end |
+| `.replace(old, new)` | Replaces one substring with another   |
+| `.split(separator)`  | Splits string into list               |
+| `.join(list)`        | Joins list into string with separator |
+| `.find(substring)`   | Returns index of first match or -1    |
+
+**Examples:**
+
+```python
+text = "  Hello World  "
+print(text.strip())           # "Hello World"
+print(text.lower())           # "  hello world  "
+print(text.upper())           # "  HELLO WORLD  "
+print(text.replace("World", "Python"))  # "  Hello Python  "
+```
+
+---
+
+## 🔢 5. String Formatting
+
+### a) Using `+` operator:
+
+```python
+name = "Alice"
+print("Hello, " + name)
+```
+
+### b) Using `f-strings` (Recommended):
+
+```python
+age = 30
+print(f"Alice is {age} years old")
+```
+
+### c) Using `.format()`:
+
+```python
+print("{} is learning Python".format("Bob"))
+```
+
+---
+
+## 🔢 6. Checking Content
+
+```python
+text = "Python123"
+print(text.isalpha())    # False
+print(text.isdigit())    # False
+print("12345".isdigit()) # True
+print("python" in text)  # True/False
+```
+
+---
+
+## 🛠️ Hands-On Exercise 6.1
+
+1. Store your full name in a variable.
+2. Print the initials using indexing.
+3. Convert the name to all uppercase.
+4. Replace spaces with underscores.
+5. Count how many words are in the sentence: "Python is easy to learn."
+6. Format and print this sentence: "John earns $5000 per month."
+
+---
+
+## 🔍 Mini Quiz 6.1
+
+1. How do you remove whitespace from both ends of a string?
+2. What method would you use to replace "day" with "week" in a string?
+3. Write an f-string to say: "My name is Alice and I am 25."
+4. What does `"abc123".isalpha()` return?
+
+---
+
+## 🔹 Summary of Lesson 6.1
+
+* Strings are sequences of characters.
+* Use indexing and slicing to access parts of strings.
+* Python has powerful string methods: `lower()`, `strip()`, `replace()`, `split()`.
+* Use f-strings for clean and readable formatting.
+* Strings are immutable: every modification returns a new string.
+
+---
+
+*End of Lesson 6.1*
