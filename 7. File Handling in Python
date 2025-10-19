@@ -1,0 +1,172 @@
+# Python Academy Course - Module 8
+
+## Lesson 8.1 — File Handling in Python (Very Detailed)
+
+---
+
+### 🌟 Learning Goal:
+
+> Understand how to work with files in Python using built-in methods to read from and write to text and CSV files.
+
+---
+
+## 🔢 1. Why File Handling?
+
+* Real-world applications often involve **reading from** or **writing to** files.
+* Examples:
+
+  * Reading configuration from a `.txt` file
+  * Writing logs to a file
+  * Processing data from `.csv` reports
+
+Python makes file handling simple using built-in functions.
+
+---
+
+## 🔢 2. Opening and Closing Files
+
+Use the built-in `open()` function.
+
+**Syntax:**
+
+```python
+file = open("filename", "mode")
+```
+
+### Common Modes:
+
+| Mode  | Description                       |
+| ----- | --------------------------------- |
+| `'r'` | Read only (default)               |
+| `'w'` | Write (overwrites file)           |
+| `'a'` | Append (adds to file)             |
+| `'x'` | Create new file (fails if exists) |
+| `'b'` | Binary mode                       |
+| `'t'` | Text mode (default)               |
+
+Always close the file after operations:
+
+```python
+file.close()
+```
+
+---
+
+## 🔢 3. Reading from a File
+
+Assume a file named `sample.txt` exists.
+
+### a) `.read()` - Reads entire content:
+
+```python
+file = open("sample.txt", "r")
+data = file.read()
+print(data)
+file.close()
+```
+
+### b) `.readline()` - Reads one line at a time:
+
+```python
+file = open("sample.txt")
+line1 = file.readline()
+line2 = file.readline()
+```
+
+### c) `.readlines()` - Returns all lines as a list:
+
+```python
+lines = file.readlines()
+```
+
+---
+
+## 🔢 4. Writing to a File
+
+### a) `.write()`
+
+```python
+file = open("output.txt", "w")
+file.write("Hello FTB!")
+file.close()
+```
+
+### b) `.writelines()` - Writes a list of lines:
+
+```python
+lines = ["Line 1\n", "Line 2\n"]
+file = open("output.txt", "w")
+file.writelines(lines)
+file.close()
+```
+
+---
+
+## 🔢 5. Using `with` Statement (Best Practice)
+
+* Automatically handles closing the file, even if an error occurs.
+
+```python
+with open("sample.txt", "r") as file:
+    data = file.read()
+    print(data)
+```
+
+This is the recommended approach.
+
+---
+
+## 🔢 6. Working with CSV Files
+
+Python provides a built-in `csv` module to work with `.csv` files.
+
+```python
+import csv
+
+# Writing to CSV
+with open("employees.csv", "w", newline="") as file:
+    writer = csv.writer(file)
+    writer.writerow(["Name", "Department"])
+    writer.writerow(["Alice", "Finance"])
+
+# Reading from CSV
+with open("employees.csv", "r") as file:
+    reader = csv.reader(file)
+    for row in reader:
+        print(row)
+```
+
+> Use `newline=""` in `open()` when writing to avoid blank lines in output on Windows.
+
+---
+
+## 🛠️ Hands-On Exercise 8.1
+
+1. Create a text file `notes.txt` and write 3 lines using `.write()`.
+2. Read the file using `.readlines()` and print each line.
+3. Use `with open()` to read and print the same file.
+4. Create a CSV file `sales.csv` and write 3 rows.
+5. Read the CSV file and print all rows.
+
+---
+
+## 🔍 Mini Quiz 8.1
+
+1. What does the `"r"` mode do when opening a file?
+2. What is the difference between `.read()` and `.readline()`?
+3. Which statement automatically closes a file?
+4. How do you avoid extra blank lines when writing to CSV on Windows?
+
+---
+
+## 🔹 Summary of Lesson 8.1
+
+* Use `open()` to work with files in read/write/append mode.
+* Always close files, or use `with open()`.
+* Text files use `.read()`, `.write()`.
+* CSV files can be managed using the `csv` module.
+* File handling is essential for real-world data applications.
+
+---
+
+*End of Lesson 8.1*
