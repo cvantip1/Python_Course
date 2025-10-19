@@ -1,0 +1,154 @@
+# Python Academy Course - Module 5
+
+## Lesson 5.2 — Tuples in Python (Very Detailed)
+
+---
+
+### 🌟 Learning Goal:
+
+> Understand what tuples are, how they differ from lists, and how to use them effectively in Python programs.
+
+---
+
+## 🔢 1. What is a Tuple?
+
+* A **tuple** is a Python data structure used to store **multiple items**.
+* Tuples are **ordered** but **immutable** (you cannot change their values after creation).
+* Tuples are defined using **parentheses** `()`.
+
+**Example:**
+
+```python
+employee_info = ("Alice", "HR", 6000)
+```
+
+---
+
+## 🔢 2. Creating Tuples
+
+### a) With parentheses:
+
+```python
+tuple1 = (1, 2, 3)
+```
+
+### b) Without parentheses (not recommended):
+
+```python
+tuple2 = "apple", "banana"
+```
+
+### c) Single-item tuple:
+
+```python
+single = (5,)  # Comma is necessary!
+```
+
+---
+
+## 🔢 3. Accessing Tuple Elements
+
+Use indexing (like lists):
+
+```python
+colors = ("red", "green", "blue")
+print(colors[0])    # red
+print(colors[-1])   # blue
+```
+
+---
+
+## 🔢 4. Tuple Immutability
+
+Once created, you **cannot change** the items in a tuple:
+
+```python
+colors = ("red", "green", "blue")
+colors[0] = "yellow"  # ❌ Error: 'tuple' object does not support item assignment
+```
+
+---
+
+## 🔢 5. Tuple Operations
+
+### a) Length of tuple:
+
+```python
+len(colors)
+```
+
+### b) Check existence:
+
+```python
+"green" in colors
+```
+
+### c) Looping through a tuple:
+
+```python
+for color in colors:
+    print(color)
+```
+
+### d) Tuple slicing:
+
+```python
+print(colors[1:3])  # ('green', 'blue')
+```
+
+### e) Tuple concatenation:
+
+```python
+a = (1, 2)
+b = (3, 4)
+c = a + b  # (1, 2, 3, 4)
+```
+
+---
+
+## 🔢 6. Why Use Tuples?
+
+* Tuples use **less memory** and are **faster** than lists.
+* Useful for storing **read-only data**.
+* Often used to **return multiple values** from a function.
+
+**Example:**
+
+```python
+def get_employee():
+    return ("Alice", "Finance", 7500)
+```
+
+---
+
+## 🛠️ Hands-On Exercise 5.2
+
+1. Create a tuple of 4 city names.
+2. Access and print the second city.
+3. Check if a city exists in the tuple.
+4. Concatenate two tuples.
+5. Slice and print the last two elements of a tuple.
+
+---
+
+## 🔍 Mini Quiz 5.2
+
+1. Can you change the value of a tuple after it's created?
+2. What is the correct way to define a single-item tuple?
+3. Which operator is used to join two tuples?
+4. How do you access the last element in a tuple?
+5. Are tuples ordered?
+
+---
+
+## 🔹 Summary of Lesson 5.2
+
+* Tuples are ordered, immutable sequences.
+* Defined using `()` and accessed by index.
+* Cannot be modified after creation.
+* Useful for fixed data and function return values.
+* Support slicing, concatenation, and looping.
+
+---
+
+*End of Lesson 5.2*
