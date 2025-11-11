@@ -1,0 +1,103 @@
+PySpark Module 1: Essentials of Apache Spark  
+Lesson 1.3 – Understanding Spark Architecture
+
+Learning Objective:
+
+    - Understand the internal architecture of Apache Spark.
+    - Learn about key components like driver, executor, cluster manager, DAG, and SparkContext.
+    - Visualize how Spark runs jobs across a cluster.
+
+What is Spark Architecture:
+
+    Apache Spark uses a master-slave architecture where a driver coordinates one or more workers (executors) across nodes in a cluster.  
+    It is designed for distributed data processing and fault tolerance.
+
+    The architecture includes:
+        - Driver Program
+        - Cluster Manager
+        - Executors
+        - Tasks
+        - DAG Scheduler
+
+Key Components of Spark Architecture:
+
+    1. Driver Program:
+        - Runs on the master node.
+        - Contains your Spark application code written using PySpark, Scala, etc.
+        - Responsible for:
+            - Creating the SparkContext
+            - Coordinating tasks
+            - Tracking job progress
+            - Handling scheduling
+
+    2. Cluster Manager:
+        - Allocates resources (CPU and memory) to Spark jobs.
+        - Spark can work with:
+            - Standalone Cluster Manager (built-in)
+            - YARN (Hadoop)
+            - Mesos
+            - Kubernetes
+
+    3. Executors:
+        - Launched on worker nodes by the cluster manager.
+        - Responsible for:
+            - Executing tasks assigned by the driver
+            - Storing data in memory/disk for computation
+            - Sending results back to the driver
+
+    4. SparkContext:
+        - The entry point to a Spark application.
+        - Created in the driver program.
+        - Connects to the cluster manager and manages the life cycle of jobs and resources.
+
+    5. Tasks:
+        - The smallest unit of work.
+        - Each task runs on one partition of data.
+        - Multiple tasks run in parallel across executors.
+
+    6. DAG (Directed Acyclic Graph):
+        - Represents the sequence of operations to be performed on data.
+        - Spark converts the user code (transformations) into a DAG.
+        - DAG scheduler breaks the DAG into stages and tasks for optimized execution.
+
+Job Execution Flow in Spark:
+
+    When a PySpark job is submitted:
+
+        - Step 1: The Driver Program starts and initializes SparkContext.
+        - Step 2: SparkContext requests resources from the Cluster Manager.
+        - Step 3: Executors are launched on the worker nodes.
+        - Step 4: The job is converted into a DAG (logical plan).
+        - Step 5: The DAG is divided into stages and tasks.
+        - Step 6: Tasks are sent to executors and executed in parallel.
+        - Step 7: Results are collected back to the driver or stored in output sinks.
+
+Diagram (Optional for Slides or Whiteboard):
+
+    Driver Program
+        |
+        |---> SparkContext
+        |         |
+        |         V
+        |     Cluster Manager
+        |         |
+        |         V
+        |    Executors (Worker Nodes)
+        |         |--> Tasks
+        |         |--> Cache/Storage
+        |
+        +---> DAG Scheduler → Tasks → Results
+
+Benefits of This Architecture:
+
+    - High scalability: Can handle petabytes of data.
+    - Fault-tolerant: Failed tasks are retried automatically.
+    - Efficient resource utilization: In-memory execution and caching.
+    - Parallel execution: Tasks run across nodes for faster results.
+
+Mini Quiz (Self-check):
+
+    1. What is the role of the Spark driver?
+    2. Which component launches and runs tasks on worker nodes?
+    3. What is a DAG in Spark?
+    4. Name two supported cluster managers for Spark.
