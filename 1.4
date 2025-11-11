@@ -1,0 +1,73 @@
+PySpark Module 1: Essentials of Apache Spark  
+Lesson 1.4 – RDDs vs DataFrames
+
+Learning Objective:
+
+    - Understand what RDDs and DataFrames are in Spark.
+    - Learn the differences, advantages, and use cases of both.
+    - Know when to use RDDs and when to prefer DataFrames.
+
+What is an RDD (Resilient Distributed Dataset):
+
+    - RDD is Spark’s original low-level distributed data structure.
+    - Immutable, fault-tolerant collection of objects spread across cluster nodes.
+    - You perform transformations (like map, filter) and actions (like collect, count) on RDDs.
+
+    Characteristics of RDDs:
+        - Lazy evaluation
+        - Immutable and distributed
+        - Type-safe (in Scala), not optimized automatically
+        - Requires manual optimization (e.g., partitioning, caching)
+
+    Example:
+        *rdd = spark.sparkContext.parallelize([1, 2, 3, 4])*  
+        *doubled = rdd.map(lambda x: x * 2)*  
+        *print(doubled.collect())*
+
+What is a DataFrame:
+
+    - DataFrame is a distributed collection of data organized into named columns.
+    - It’s similar to a SQL table or a pandas DataFrame.
+    - Built on top of RDDs but comes with optimizations (Catalyst and Tungsten).
+    - Supports SQL queries and a wide range of DataFrame APIs.
+
+    Characteristics of DataFrames:
+        - Schema-aware (column names and types)
+        - Optimized with Catalyst engine
+        - Easier syntax for data manipulation
+        - Can be queried using SQL
+
+    Example:
+        *data = [("John", 28), ("Alice", 25)]*  
+        *df = spark.createDataFrame(data, ["name", "age"])*  
+        *df.show()*
+
+Comparison Table:
+
+    Feature               | RDD                          | DataFrame
+    ---------------------|------------------------------|-----------------------------
+    Abstraction Level    | Low-level (objects)           | High-level (columns/tables)
+    Performance          | Slower, no optimization       | Faster, query optimized
+    Schema               | No schema                     | Schema with column names
+    Ease of Use          | Requires functional programming | Easier with SQL-like syntax
+    Optimization         | Manual                        | Automatic (Catalyst)
+    Use Cases            | Unstructured, complex data    | Structured, tabular data
+
+When to Use RDDs:
+
+    - You need full control over low-level transformations.
+    - You’re dealing with unstructured or complex nested data.
+    - You want fine-grained control over partitioning and caching.
+
+When to Use DataFrames:
+
+    - You are working with structured or semi-structured data.
+    - You need better performance and simpler syntax.
+    - You plan to use Spark SQL or MLlib pipelines.
+
+Mini Quiz (Self-check):
+
+    1. Which one supports schema and column names?
+    2. What are two advantages of using DataFrames over RDDs?
+    3. Can you apply map and filter on both RDDs and DataFrames?
+    4. In which case should you prefer RDDs?
