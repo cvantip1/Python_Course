@@ -1,87 +1,94 @@
+PySpark Module 1: Essentials of Apache Spark
 Lesson 1.1 – What is Apache Spark?
 
 Learning Objective
 
-- Understand the purpose and power of Apache Spark.
-- Learn how it differs from traditional data processing frameworks.
-- Know where PySpark fits into the Spark ecosystem.
+    - Understand the purpose and power of Apache Spark.
+    - Learn how it differs from traditional data processing frameworks.
+    - Know where PySpark fits into the Spark ecosystem.
 
 What is Apache Spark?
 
-- Apache Spark is an open-source distributed computing engine for large-scale data processing.
-- It provides high-level APIs in Java, Scala, Python (PySpark), and R.
-- Originally developed at UC Berkeley and now maintained by the Apache Software Foundation.
+    - Apache Spark is an open-source distributed computing engine for large-scale data processing.
+    - It provides high-level APIs in Java, Scala, Python (PySpark), and R.
+    - Originally developed at UC Berkeley and now maintained by the Apache Software Foundation.
 
 Why Use Apache Spark?
 
-- Processes massive datasets quickly through in-memory computation.
-- Supports multiple workloads such as:
-  - Batch processing
-  - Real-time stream processing
-  - SQL queries
-  - Machine learning
-  - Graph computation
-- Can run on various cluster managers (e.g., Hadoop YARN, Kubernetes, Mesos, or standalone).
-- Integrates well with storage systems like HDFS, S3, and Azure Blob Storage.
+    Apache Spark is used because it:
+
+        - Processes massive datasets quickly through in-memory computation.
+        - Supports multiple workloads such as:
+            - Batch processing
+            - Real-time stream processing
+            - SQL queries
+            - Machine learning
+            - Graph computation
+        - Can run on various cluster managers (e.g., Hadoop YARN, Kubernetes, Mesos, or standalone).
+        - Integrates well with storage systems like HDFS, S3, and Azure Blob Storage.
 
 Key Advantages
 
-- Speed: Up to 100x faster than Hadoop MapReduce due to in-memory execution.
-- Simplicity: Simple APIs for complex data operations using DataFrames and RDDs.
-- Flexibility: One platform for SQL, streaming, ML, and graph.
-- Scalability: Easily scales from a laptop to thousands of nodes in a cluster.
+    - Speed: Up to 100x faster than Hadoop MapReduce due to in-memory execution.
+    - Simplicity: Simple APIs for complex data operations using DataFrames and RDDs.
+    - Flexibility: One platform for SQL, streaming, ML, and graph.
+    - Scalability: Easily scales from a laptop to thousands of nodes in a cluster.
 
 Where is Spark Used?
 
-- Clickstream analysis in e-commerce.
-- Fraud detection in financial systems.
-- Real-time dashboards and log processing.
-- ETL (Extract, Transform, Load) pipelines.
-- Recommendation engines in media and retail.
-- Processing and analyzing IoT sensor data.
+    Common real-world use cases:
+
+        - Clickstream analysis in e-commerce
+        - Fraud detection in financial systems
+        - Real-time dashboards and log processing
+        - ETL (Extract, Transform, Load) pipelines
+        - Recommendation engines in media and retail
+        - Processing and analyzing IoT sensor data
 
 What is PySpark?
 
-- PySpark is the Python API for Apache Spark.
-- Enables Python developers to write Spark applications using familiar syntax.
-- Ideal for:
-  - Data engineers building scalable ETL pipelines.
-  - Data analysts working with large datasets.
-  - Data scientists doing distributed model training and inference.
+    - PySpark is the Python API for Apache Spark.
+    - Enables Python developers to write Spark applications using familiar syntax.
+    - Ideal for:
+        - Data engineers building scalable ETL pipelines.
+        - Data analysts working with large datasets.
+        - Data scientists doing distributed model training and inference.
 
 Spark vs Traditional Systems
 
-Traditional Data Systems (e.g., Hadoop MapReduce):
+    Traditional Data Systems (e.g., Hadoop MapReduce):
 
-- Disk-based intermediate storage after each step.
-- Higher latency.
-- Slower for iterative algorithms (like machine learning).
+        - Disk-based intermediate storage after each step.
+        - Higher latency.
+        - Slower for iterative algorithms (like machine learning).
 
-Apache Spark:
+    Apache Spark:
 
-- Performs operations in-memory using RDDs and DataFrames.
-- Minimizes disk I/O, resulting in faster processing.
-- Efficient for iterative processing and complex pipelines.
+        - Performs operations in-memory using RDDs and DataFrames.
+        - Minimizes disk I/O, resulting in faster processing.
+        - Efficient for iterative processing and complex pipelines.
 
 Analogy: Spark as a Restaurant Kitchen
 
-- Ingredients → Raw data
-- Recipes → Transformations and logic
-- Chefs → Executors processing data
-- Waiters → APIs like PySpark that connect user to system
+    Think of Spark like a restaurant kitchen:
 
-Just like multiple chefs prepare food in parallel, Spark processes chunks of data across multiple workers in parallel.
+        - Ingredients → Raw data
+        - Recipes → Transformations and logic
+        - Chefs → Executors processing data
+        - Waiters → APIs like PySpark
+
+    Just like multiple chefs prepare food in parallel, Spark processes chunks of data across multiple workers in parallel.
 
 Mini Quiz
 
-1. List any three reasons why Apache Spark is popular.
-2. What is the main speed advantage Spark has over MapReduce?
-3. Define PySpark in simple terms.
-4. Name two real-world applications of Apache Spark.
+    1. List three advantages of Apache Spark.
+    2. Why is Spark faster than traditional MapReduce?
+    3. What is PySpark and how is it used?
+    4. Give one real-world use case for Spark.
 
 Reflection Exercise
 
-Write 3-5 lines on:
+    Write 3-5 lines on:
 
-- A situation in your work where large-scale data is involved.
-- How Spark or PySpark could improve that process.
+        - A situation in your work where large-scale data is involved.
+        - How Spark or PySpark could improve that process.
