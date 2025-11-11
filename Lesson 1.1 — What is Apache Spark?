@@ -1,30 +1,8 @@
-# PySpark Academy - Module 1
-
-## Lesson 1.1 — What is Apache Spark?
-
-**Learning Objective**  
-Understand what Apache Spark is, why it was created, and what problems it solves.
-
----
-
-### 1. Why Apache Spark?
-
-- Traditional tools like Hadoop MapReduce are slow.
-- Spark enables **faster, in-memory** data processing at scale.
-
-...
-
-### Table: Spark vs MapReduce
-
-| Feature           | Hadoop MapReduce | Apache Spark          |
-|------------------|------------------|------------------------|
-| Processing        | Disk-based       | In-memory              |
-| API               | Low-level        | High-level APIs (Python) |
-| Speed             | Slower           | ~100x faster           |
-
-...
-
-### ✅ Quiz
-
-1. What is Apache Spark?
-2. Name two key features.
+Feature        | Hadoop MapReduce           | Apache Spark
+---------------------------------------------------------------
+Processing     | Disk-based                 | In-memory
+API            | Low-level                  | High-level APIs (Python)
+Speed          | Slower                     | ~100x faster
+Ease of Use    | More complex               | Easier and concise
+Supports       | Batch processing only      | Batch, Streaming, ML, SQL
+Caching        | No                         | Yes
