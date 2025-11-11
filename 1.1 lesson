@@ -1,22 +1,22 @@
 PySpark Module 1: Essentials of Apache Spark  
 Lesson 1.1 – What is Apache Spark?
 
-Learning Objective
+Learning Objective:
 
     - Understand the fundamentals of Apache Spark.
     - Learn why Apache Spark is used in modern data systems.
     - Get introduced to PySpark as the Python interface to Spark.
 
-Introduction to Apache Spark
+Introduction to Apache Spark:
 
-    Apache Spark is an open-source distributed computing system used for big data processing.
-    It enables large-scale data processing using multiple machines (or nodes) in a cluster.
+    Apache Spark is an open-source distributed computing system used for big data processing.  
+    It enables large-scale data processing using multiple machines (or nodes) in a cluster.  
     Originally developed at UC Berkeley, Spark is now maintained by the Apache Software Foundation.
 
     Spark is known for its ability to process huge volumes of data very quickly by using in-memory computation, 
     which means it keeps data in RAM instead of reading/writing to disk repeatedly.
 
-Why Apache Spark is Needed
+Why Apache Spark is Needed:
 
     Modern businesses generate massive amounts of data from:
         - Web applications
@@ -34,7 +34,7 @@ Why Apache Spark is Needed
         - Supporting real-time stream processing
         - Offering high-level APIs in Python, Scala, Java, and R
 
-Key Features of Apache Spark
+Key Features of Apache Spark:
 
     - Speed:
         - Up to 100x faster than traditional systems for certain workloads.
@@ -56,7 +56,7 @@ Key Features of Apache Spark
             - Machine learning
             - Graph algorithms
 
-Where Spark is Used (Use Cases)
+Where Spark is Used (Use Cases):
 
     - Retail: Recommendation systems (like Amazon)
     - Finance: Fraud detection in transactions
@@ -65,7 +65,7 @@ Where Spark is Used (Use Cases)
     - Government: Traffic and sensor data processing
     - Healthcare: Genomics, diagnostics, and real-time alerting systems
 
-What is PySpark?
+What is PySpark:
 
     - PySpark is the Python API for Apache Spark.
     - It allows Python developers to write Spark jobs using familiar Python syntax.
@@ -76,7 +76,7 @@ What is PySpark?
         - Access to the full Spark ecosystem: DataFrames, SQL, MLlib, GraphX, and Structured Streaming.
         - Seamless integration with Jupyter Notebooks, VS Code, and other IDEs.
 
-Comparison: Spark vs Traditional Systems
+Comparison: Spark vs Traditional Systems:
 
     Traditional Systems:
         - Rely on disk I/O after every step
@@ -88,7 +88,7 @@ Comparison: Spark vs Traditional Systems
         - Highly efficient for iterative and chained operations
         - Optimized DAG (Directed Acyclic Graph) execution model
 
-Analogy: Spark as a Restaurant Kitchen
+Analogy: Spark as a Restaurant Kitchen:
 
     Imagine Spark as a restaurant kitchen:
         - Ingredients → Raw data
@@ -99,14 +99,14 @@ Analogy: Spark as a Restaurant Kitchen
     Just like multiple chefs prepare multiple dishes at the same time, 
     Spark splits data into chunks and processes them in parallel across a cluster.
 
-Mini Quiz (Self-check)
+Mini Quiz (Self-check):
 
     1. What are the core advantages of using Apache Spark?
     2. How does Spark achieve faster performance compared to Hadoop?
     3. What is PySpark used for?
     4. Name one real-world use case where Spark is effective.
 
-Reflection Exercise
+Reflection Exercise:
 
     Write 3-5 lines on:
         - A real or imagined case in your organization where a large volume of data is handled.
