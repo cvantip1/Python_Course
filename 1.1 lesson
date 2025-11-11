@@ -1,103 +1,80 @@
-PySpark Module 1: Essentials of Apache Spark  
+PySpark Module 1: Essentials of Apache Spark
 Lesson 1.1 – What is Apache Spark?
 
-============================================================
+Learning Objective
 
-**Learning Objective:**
+Understand the purpose and power of Apache Spark, how it differs from traditional processing frameworks, and where PySpark fits in.
 
-    Understand the purpose and power of Apache Spark,
-    how it differs from traditional processing frameworks,
-    and where PySpark fits in.
+What is Apache Spark?
 
-------------------------------------------------------------
+Apache Spark is a powerful, open-source big data processing engine.  
+It is built for speed, ease of use, and analytics.  
+Originally developed at UC Berkeley, it is now a top-level Apache project.
 
-**What is Apache Spark?**
+Why Use Apache Spark?
 
-    Apache Spark is a powerful, open-source big data processing engine.
-    It was built for speed, ease of use, and analytics.
-    Originally developed at UC Berkeley, it is now a top-level Apache project.
+Apache Spark is used because it:
 
-------------------------------------------------------------
+- Processes large-scale data very fast using in-memory computation  
+- Supports batch, real-time streaming, SQL, machine learning, and graph processing  
+- Runs on a cluster of machines (distributed computing)  
+- Integrates well with Hadoop, Amazon S3, Azure Blob Storage, and others
 
-**Why Use Apache Spark?**
+Key Advantages
 
-    Apache Spark is used because it:
+- Speed: Up to 100 times faster than Hadoop MapReduce  
+- Ease of Use: APIs available in Python (PySpark), Scala, Java, and R  
+- Flexibility: Can handle ETL, machine learning, analytics, and graph workloads  
+- Unified Engine: Works for both batch and streaming data  
 
-        - Processes large-scale data very fast using in-memory computation
-        - Supports batch, real-time streaming, SQL, machine learning, and graph processing
-        - Runs on a cluster of machines (distributed computing)
-        - Integrates well with Hadoop, Amazon S3, Azure Blob Storage, and others
+Where is Spark Used?
 
-------------------------------------------------------------
+Common real-world use cases:
 
-**Key Advantages:**
+- Clickstream analysis for customer behavior  
+- Fraud detection using real-time data  
+- Recommendation engines (like Netflix or Amazon)  
+- ETL pipelines for very large datasets
 
-        - Speed: Up to 100 times faster than Hadoop MapReduce
-        - Ease of Use: APIs available in Python (PySpark), Scala, Java, and R
-        - Flexibility: Can handle ETL, machine learning, analytics, and graph workloads
-        - Unified Engine: Works for both batch and streaming data
+What is PySpark?
 
-------------------------------------------------------------
+- PySpark is the Python API for Apache Spark  
+- It allows writing Python code that executes on the Spark engine  
+- Ideal for data professionals familiar with Python (like pandas or NumPy)
 
-**Where is Spark Used?**
+Spark vs Traditional Systems
 
-    Common real-world use cases:
+Traditional Data Systems:
 
-        - Clickstream analysis for customer behavior
-        - Fraud detection using real-time data
-        - Recommendation engines (like Netflix or Amazon)
-        - ETL pipelines for very large datasets
+- Process data in steps (e.g., MapReduce)  
+- Write intermediate results to disk (slower)
 
-------------------------------------------------------------
+Apache Spark:
 
-**What is PySpark?**
+- Processes data in-memory  
+- Uses Resilient Distributed Datasets (RDDs)  
+- Reduces I/O operations and improves speed
 
-    - PySpark is the Python API for Apache Spark
-    - It allows writing Python code that executes on the Spark engine
-    - It’s ideal for data professionals familiar with Python (like pandas or NumPy)
+Analogy: Spark as a Restaurant Kitchen
 
-------------------------------------------------------------
+Think of Spark like a restaurant kitchen:
 
-**Spark vs Traditional Systems:**
+- Ingredients → Raw data  
+- Recipes → Transformations  
+- Chefs → Worker nodes  
+- Waiters → APIs like PySpark
 
-    Traditional Data Systems:
+Multiple chefs prepare food in parallel — just like how Spark processes data across a cluster.
 
-        - Process data in stages (e.g., MapReduce)
-        - Write intermediate results to disk (slow)
+Mini Quiz
 
-    Apache Spark:
+1. List three advantages of Apache Spark.  
+2. Why is Spark faster than traditional MapReduce?  
+3. What is PySpark and how is it used?  
+4. Give one real-world use case for Spark.
 
-        - Processes data in-memory
-        - Uses Resilient Distributed Datasets (RDDs)
-        - Reduces I/O operations and improves speed
+Reflection Exercise
 
-------------------------------------------------------------
-
-**Analogy: Spark as a Restaurant Kitchen**
-
-    Think of Spark like a restaurant kitchen:
-
-        - Ingredients  → Raw data
-        - Recipes      → Transformations
-        - Chefs        → Worker nodes
-        - Waiters      → APIs (like PySpark)
-
-    Multiple chefs prepare food in parallel, just like how Spark processes data across clusters.
-
-------------------------------------------------------------
-
-**Mini Quiz:**
-
-    1. List three advantages of Apache Spark.
-    2. Why is Spark faster than traditional MapReduce?
-    3. What is PySpark and how is it used?
-    4. Give one real-world use case for Spark.
-
-------------------------------------------------------------
-
-**Reflection Exercise:**
-
-    Write a few sentences explaining:
-
-        - Where you have encountered large-scale data in your organization
-        - How Spark could be useful in handling that data
+Write a few sentences explaining:  
+- Where you have encountered large-scale data in your organization  
+- How Spark could be useful in handling that data
