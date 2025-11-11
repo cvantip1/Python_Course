@@ -1,117 +1,30 @@
 # PySpark Academy - Module 1
 
-## Lesson 1.1 — What is Apache Spark? (Very Detailed)
+## Lesson 1.1 — What is Apache Spark?
+
+**Learning Objective**  
+Understand what Apache Spark is, why it was created, and what problems it solves.
 
 ---
 
-### 🌟 Learning Objective:
+### 1. Why Apache Spark?
 
-> Understand what Apache Spark is, why it was created, and what problems it solves in modern data processing.
+- Traditional tools like Hadoop MapReduce are slow.
+- Spark enables **faster, in-memory** data processing at scale.
 
----
+...
 
-## 🔢 1. The Big Picture: Why Apache Spark?
+### Table: Spark vs MapReduce
 
-Before Spark, data engineers and scientists faced challenges with:
+| Feature           | Hadoop MapReduce | Apache Spark          |
+|------------------|------------------|------------------------|
+| Processing        | Disk-based       | In-memory              |
+| API               | Low-level        | High-level APIs (Python) |
+| Speed             | Slower           | ~100x faster           |
 
-* Processing huge volumes of data quickly (think terabytes or petabytes)
-* Performing complex operations across clusters
-* Dealing with slow disk-based systems like Hadoop MapReduce
+...
 
-**Apache Spark was built to solve this.** It allows:
-
-* Fast, distributed data processing
-* In-memory computations
-* Simple APIs for Python, Java, Scala, R
-* Support for SQL, Machine Learning, Streaming, and Graphs
-
----
-
-## 🔢 2. Definition
-
-**Apache Spark** is:
-
-* An open-source **distributed computing engine**
-* Designed for **big data processing**
-* Built for **speed, ease of use, and scalability**
-
-It can process data **100x faster** than traditional MapReduce by using **in-memory computation**.
-
----
-
-## 🔢 3. Key Features of Spark
-
-| Feature               | Description                                                |
-| --------------------- | ---------------------------------------------------------- |
-| In-Memory Processing  | Keeps intermediate results in memory, reducing disk I/O    |
-| Distributed Computing | Works across clusters with thousands of machines           |
-| Multi-language APIs   | Python (PySpark), Scala, Java, R                           |
-| Unified Stack         | Batch, Streaming, SQL, ML, Graph all supported             |
-| Lazy Evaluation       | Builds logical execution plan and optimizes before running |
-
----
-
-## 🔢 4. Spark Use Cases
-
-* **Batch Processing**: Process large files (e.g. logs, ETL pipelines)
-* **Streaming**: Real-time fraud detection, stock market analysis
-* **Machine Learning**: Train ML models at scale using Spark MLlib
-* **SQL Analytics**: Run SQL queries on massive structured datasets
-* **Graph Processing**: Analyze social networks, supply chains
-
----
-
-## 🔢 5. Spark vs Hadoop MapReduce
-
-| Feature     | Hadoop MapReduce    | Apache Spark                 |
-| ----------- | ------------------- | ---------------------------- |
-| Speed       | Slower (disk-based) | Much faster (in-memory)      |
-| Ease of Use | Complex APIs        | Simple, high-level APIs      |
-| Support     | Batch only          | Batch + Streaming + SQL + ML |
-| Caching     | No                  | Yes (RDD/DataFrame cache)    |
-
-> Spark is **not a replacement for Hadoop**, but a faster processing engine that can run on top of HDFS.
-
----
-
-## 🎓 Real-World Analogy
-
-Think of **Spark** as a smart delivery service:
-
-* It distributes packages (data) across trucks (nodes)
-* Keeps the engine running (in-memory) instead of turning it off after each stop (disk writes)
-* Makes decisions on the best route (optimizer)
-* Speaks your language (Python, Scala, etc.)
-
----
-
-## 🛠️ Hands-On Reflection (No code yet)
-
-Discuss:
-
-1. Where in your FTB projects or pipelines could Spark have helped?
-2. What kind of data workloads do you currently process?
-3. What tools are used today and what are their limitations?
-
----
-
-## 🔍 Mini Quiz 1.1
+### ✅ Quiz
 
 1. What is Apache Spark?
-2. Why is Spark faster than MapReduce?
-3. Name two real-world use cases of Spark.
-4. What does "in-memory computation" mean?
-5. Can Spark support SQL and Machine Learning?
-
----
-
-## 🔹 Summary
-
-* Apache Spark is a fast, distributed data processing engine.
-* Built for speed (in-memory), scalability (across clusters), and simplicity (Python APIs).
-* Supports batch, stream, SQL, ML — all in one engine.
-* Ideal for large-scale analytics pipelines like those in public sector, finance, telecom, etc.
-
----
-
-*End of Lesson 1.1*
+2. Name two key features.
