@@ -1,0 +1,79 @@
+PySpark Module 2: RDDs and DataFrames
+Lesson 2.4 – RDD Persistence and Lineage
+
+Learning Objective:
+
+- Understand how Spark handles RDD persistence.
+- Learn how to cache RDDs for performance improvement.
+- Explore lineage and fault tolerance in Spark.
+
+Why Persistence Matters:
+
+- In Spark, transformations are lazy — they are only computed when an action is triggered.
+- If you perform multiple actions on the same RDD, Spark recomputes it each time.
+- To avoid redundant computations, you can persist (or cache) the RDD in memory or disk.
+
+Caching and Persistence:
+
+- cache(): Stores the RDD in memory.
+- persist(): Gives more control; can store to memory, disk, or both.
+
+Example using cache():
+
+       rdd = sc.textFile("data.txt")
+       rdd.cache()
+       rdd.count()
+       rdd.collect()   # Fast because rdd is cached
+
+Example using persist():
+
+       from pyspark import StorageLevel
+       rdd = sc.textFile("data.txt")
+       rdd.persist(StorageLevel.DISK_ONLY)
+       rdd.count()
+
+Common Storage Levels:
+
+- MEMORY_ONLY (default for cache)
+- MEMORY_AND_DISK
+- DISK_ONLY
+- MEMORY_ONLY_SER (serialized)
+- MEMORY_AND_DISK_SER
+
+When to Use Persistence:
+
+- Use when you're performing multiple actions on the same RDD.
+- Use persist() if your data doesn't fit into memory.
+- Helps reduce latency and speeds up iterative algorithms.
+
+RDD Lineage:
+
+- Every RDD remembers how it was derived from previous RDDs.
+- This lineage is used by Spark to recompute lost data if a node fails.
+- It is the foundation of fault tolerance in RDDs.
+
+Example of lineage:
+
+       rdd1 = sc.parallelize([1, 2, 3])
+       rdd2 = rdd1.map(lambda x: x * 2)
+       rdd3 = rdd2.filter(lambda x: x > 2)
+
+- Here, rdd3 has a lineage: rdd1 → rdd2 → rdd3
+- If data in rdd3 is lost, Spark recomputes it using the chain
+
+Benefits of Lineage:
+
+- Enables recovery from faults without data replication.
+- Ensures recomputation is possible without manual backups.
+
+Limitations of Caching:
+
+- Memory limits may cause failures or fallback to disk.
+- Must be managed explicitly (unpersist() if no longer needed).
+
+Mini Quiz (Self-check):
+
+1. What is the difference between cache() and persist()?
+2. What is RDD lineage?
+3. Why is lineage important for fault tolerance?
+4. What happens if cached data is larger than memory?
