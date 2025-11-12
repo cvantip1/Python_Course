@@ -1,0 +1,82 @@
+PySpark Module 4: Joins and Advanced DataFrame Operations  
+Lesson 4.3 – Partitioning and Caching
+
+Learning Objective:
+
+- Understand how PySpark partitions data.
+- Learn how to optimize performance using caching and persistence.
+- Apply partitioning and caching in practical data operations.
+
+What is Partitioning:
+
+- In PySpark, data is distributed across partitions for parallel processing.
+- Each partition holds a subset of the data and is processed by a separate executor/task.
+
+Checking Number of Partitions:
+
+       df.rdd.getNumPartitions()
+
+Repartitioning:
+
+- Changes the number of partitions in a DataFrame.
+- Useful for load balancing or tuning performance.
+
+       df_repartitioned = df.repartition(4)
+
+Coalescing:
+
+- Reduces the number of partitions.
+- More efficient than `repartition()` for decreasing partition count.
+
+       df_coalesced = df.coalesce(2)
+
+When to Use Repartition vs Coalesce:
+
+- Use `repartition()` when increasing partitions or shuffling is acceptable.
+- Use `coalesce()` when decreasing partitions to avoid full shuffle.
+
+Understanding Caching:
+
+- Caching stores the DataFrame in memory across operations.
+- Speeds up repeated actions on the same DataFrame.
+
+       df.cache()
+       df.count()  # Action to materialize the cache
+
+Persisting Data:
+
+- Allows caching in different storage levels (memory, disk, etc.).
+
+       from pyspark.storagelevel import StorageLevel
+       df.persist(StorageLevel.MEMORY_AND_DISK)
+
+Unpersisting:
+
+- Frees up memory once data is no longer needed.
+
+       df.unpersist()
+
+Example Use Case:
+
+       # Step 1: Read data
+       df = spark.read.csv("data.csv", header=True)
+
+       # Step 2: Cache the data for repeated use
+       df.cache()
+
+       # Step 3: Perform multiple transformations
+       df.groupBy("Department").count().show()
+       df.groupBy("Department").agg({"Salary": "avg"}).show()
+
+Best Practices:
+
+- Always monitor memory usage when using caching.
+- Avoid caching very large DataFrames unless reused multiple times.
+- Use `.unpersist()` when cached data is no longer needed.
+
+Mini Quiz (Self-check):
+
+1. What is the default number of partitions based on?
+2. How is `coalesce()` different from `repartition()`?
+3. Why should you call an action after `cache()`?
+4. What does `unpersist()` do?
