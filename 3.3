@@ -1,0 +1,77 @@
+PySpark Module 3: Working with DataFrames  
+Lesson 3.3 – Working with Built-in Functions
+
+Learning Objective:
+
+- Learn to use built-in PySpark SQL functions for transformations.
+- Understand how to perform operations such as string manipulation, numerical calculations, and date functions.
+
+What Are Built-in Functions:
+
+- PySpark provides a rich set of functions in `pyspark.sql.functions` module.
+- These include string functions, math functions, date/time functions, aggregation functions, etc.
+- They are optimized for distributed processing and easier to use than custom UDFs for most common operations.
+
+Importing Functions:
+
+       from pyspark.sql.functions import col, lit, upper, lower, length, concat, current_date, datediff
+
+String Functions:
+
+- `upper(col)`: Converts text to uppercase.
+- `lower(col)`: Converts text to lowercase.
+- `length(col)`: Gets the number of characters in a string.
+- `concat(col1, col2)`: Combines two or more columns.
+
+       df.select(upper(col("Name")).alias("UpperName")).show()
+       df.select(length(col("Name"))).show()
+       df.select(concat(col("Name"), lit("!"))).show()
+
+Mathematical Functions:
+
+- `round(col, n)`: Rounds a number to n decimal places.
+- `sqrt(col)`: Calculates square root.
+- `abs(col)`: Absolute value.
+
+       from pyspark.sql.functions import round, sqrt, abs
+
+       df.select(round(col("Age"), 0)).show()
+       df.select(sqrt(col("Age"))).show()
+
+Date Functions:
+
+- `current_date()`: Returns today’s date.
+- `datediff(date1, date2)`: Difference in days between two dates.
+
+       df.select(current_date()).show()
+
+       from pyspark.sql.functions import to_date
+
+       df2 = df.withColumn("StartDate", to_date(lit("2023-01-01")))
+       df2 = df2.withColumn("DaysSince", datediff(current_date(), col("StartDate")))
+       df2.select("Name", "DaysSince").show()
+
+Using `alias()` for Naming:
+
+- Rename output columns for readability.
+
+       df.select(upper(col("Name")).alias("UpperCaseName")).show()
+
+Combining Multiple Functions:
+
+- You can nest functions or chain transformations.
+
+       df.select(concat(upper(col("Name")), lit("!!!")).alias("LoudName")).show()
+
+Best Practices:
+
+- Use built-in functions instead of UDFs wherever possible.
+- Built-in functions are optimized and scalable.
+- Always import only the functions you need.
+
+Mini Quiz (Self-check):
+
+1. What function is used to get today’s date?
+2. How do you convert a column value to uppercase?
+3. What does `datediff()` do?
+4. How do you rename a column in the output?
