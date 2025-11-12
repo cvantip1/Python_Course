@@ -1,0 +1,80 @@
+PySpark Module 2: RDDs and DataFrames
+Lesson 2.3 – Key-Value Pair RDDs
+
+Learning Objective:
+
+- Understand what key-value pair RDDs are and why they are useful.
+- Learn how to create and manipulate key-value RDDs.
+- Practice common operations such as groupByKey, reduceByKey, and join.
+
+What is a Key-Value Pair RDD:
+
+- A special kind of RDD where each element is a tuple of (key, value).
+- Often used in distributed computing for aggregations and joins.
+- Similar to Python dictionaries, but optimized for distributed processing.
+
+Creating Key-Value Pair RDDs:
+
+You can convert a regular RDD into a pair RDD using map():
+
+       data = [("A", 1), ("B", 2), ("A", 3)]
+       pair_rdd = sc.parallelize(data)
+
+Basic Operations on Pair RDDs:
+
+1. groupByKey():
+   - Groups all values with the same key into a list.
+   - Less efficient as it shuffles data across nodes.
+   - Example:
+
+         rdd = sc.parallelize([("A", 1), ("B", 2), ("A", 3)])
+         result = rdd.groupByKey().mapValues(list)
+         print(result.collect())     # [("A", [1, 3]), ("B", [2])]
+
+2. reduceByKey(func):
+   - More efficient aggregation by combining values locally before shuffle.
+   - Applies a reduce function to values with the same key.
+   - Example:
+
+         rdd = sc.parallelize([("A", 1), ("B", 2), ("A", 3)])
+         result = rdd.reduceByKey(lambda x, y: x + y)
+         print(result.collect())     # [("A", 4), ("B", 2)]
+
+3. sortByKey():
+   - Sorts the RDD by key.
+   - Example:
+
+         rdd = sc.parallelize([("B", 2), ("A", 1)])
+         result = rdd.sortByKey()
+         print(result.collect())     # [("A", 1), ("B", 2)]
+
+4. mapValues(func):
+   - Applies a function only to the value, not the key.
+   - Example:
+
+         rdd = sc.parallelize([("A", 2), ("B", 3)])
+         result = rdd.mapValues(lambda x: x * 10)
+         print(result.collect())     # [("A", 20), ("B", 30)]
+
+5. join():
+   - Joins two pair RDDs by key.
+   - Example:
+
+         rdd1 = sc.parallelize([("A", 1), ("B", 2)])
+         rdd2 = sc.parallelize([("A", "X"), ("B", "Y")])
+         result = rdd1.join(rdd2)
+         print(result.collect())     # [("A", (1, "X")), ("B", (2, "Y"))]
+
+Use Cases for Pair RDDs:
+
+- Aggregating logs by user ID.
+- Counting word frequencies.
+- Joining datasets (e.g., orders with customer info).
+- Grouping records by category.
+
+Mini Quiz (Self-check):
+
+1. What data structure does a pair RDD use for its elements?
+2. Which is more efficient: groupByKey() or reduceByKey()? Why?
+3. How does mapValues() differ from map()?
+4. What does join() return when keys are present in both RDDs?
