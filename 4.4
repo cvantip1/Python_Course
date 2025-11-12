@@ -1,0 +1,71 @@
+PySpark Module 4: Joins and Advanced DataFrame Operations  
+Lesson 4.4 – Basic Data Pipelines with PySpark
+
+Learning Objective:
+
+- Understand how to build simple data pipelines using PySpark.
+- Learn how to read, transform, and write data.
+- Combine multiple operations to form an end-to-end pipeline.
+
+What is a Data Pipeline:
+
+- A data pipeline is a sequence of steps where raw data is processed into meaningful output.
+- In PySpark, this typically involves:
+  1. Reading data
+  2. Cleaning and transforming data
+  3. Aggregating or joining
+  4. Writing results to storage
+
+Step 1 – Reading Input Data:
+
+       df = spark.read.csv("employees.csv", header=True, inferSchema=True)
+
+Step 2 – Cleaning and Type Casting:
+
+       from pyspark.sql.functions import col
+
+       df_clean = df.filter(col("Salary").isNotNull()) \
+                    .withColumn("Salary", col("Salary").cast("float")) \
+                    .withColumn("Experience", col("Experience").cast("int"))
+
+Step 3 – Transformations:
+
+       df_transformed = df_clean.withColumn("AnnualSalary", col("Salary") * 12) \
+                                .filter(col("Experience") > 3)
+
+Step 4 – Aggregations or Joins:
+
+       summary = df_transformed.groupBy("Department") \
+                               .avg("AnnualSalary") \
+                               .withColumnRenamed("avg(AnnualSalary)", "AvgAnnualSalary")
+
+Step 5 – Writing Output:
+
+       summary.write.csv("output/summary.csv", header=True, mode="overwrite")
+
+Combining Steps into a Pipeline:
+
+       df = spark.read.csv("employees.csv", header=True, inferSchema=True)
+
+       result = df.filter(col("Salary").isNotNull()) \
+                  .withColumn("Salary", col("Salary").cast("float")) \
+                  .withColumn("AnnualSalary", col("Salary") * 12) \
+                  .groupBy("Department") \
+                  .avg("AnnualSalary") \
+                  .withColumnRenamed("avg(AnnualSalary)", "AvgAnnualSalary")
+
+       result.write.csv("output/final_summary.csv", header=True, mode="overwrite")
+
+Best Practices:
+
+- Validate data types during read step using `inferSchema`.
+- Cast types explicitly before transformations.
+- Choose appropriate file formats and write modes.
+- Use `.cache()` only if intermediate DataFrame is reused.
+
+Mini Quiz (Self-check):
+
+1. What are the typical stages in a PySpark data pipeline?
+2. How do you convert a monthly salary to annual salary?
+3. What function is used to save the output to a file?
+4. What does `mode="overwrite"` do in write step?
