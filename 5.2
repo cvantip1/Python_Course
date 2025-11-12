@@ -1,0 +1,102 @@
+PySpark Module 5: Working with SQL and Temporary Views  
+Lesson 5.2 – Complex SQL Queries and Nested Selections in PySpark
+
+Learning Objective:
+
+- Learn how to write advanced SQL queries using PySpark.
+- Understand how to use nested SELECT statements.
+- Practice filtering, aggregating, and ranking data using SQL syntax.
+
+Why Use Complex SQL Queries:
+
+- Business logic often requires layered queries.
+- SQL allows expressive and readable syntax for multi-step calculations.
+
+Use Case Scenario:
+
+- You have an employee dataset and want to find:
+  - The top 2 highest-paid employees per department.
+  - Average salaries for employees with more than 5 years of experience.
+  - Departments with salaries above a company-wide average.
+
+Example Dataset:
+
+Assume a view named `employees` is already created with the following columns:
+
+- `Name`
+- `Department`
+- `Salary`
+- `Experience`
+
+Nested SELECT (Subquery):
+
+Find departments with average salary above the overall average.
+
+       spark.sql("""
+           SELECT Department, AVG(Salary) AS DeptAvg
+           FROM employees
+           GROUP BY Department
+           HAVING DeptAvg > (
+               SELECT AVG(Salary)
+               FROM employees
+           )
+       """).show()
+
+Using CTEs (WITH clause):
+
+Find employees earning more than the average in their department.
+
+       spark.sql("""
+           WITH dept_avg AS (
+               SELECT Department, AVG(Salary) AS avg_salary
+               FROM employees
+               GROUP BY Department
+           )
+           SELECT e.Name, e.Department, e.Salary
+           FROM employees e
+           JOIN dept_avg d
+           ON e.Department = d.Department
+           WHERE e.Salary > d.avg_salary
+       """).show()
+
+Using Window Functions:
+
+To get top 2 earners per department.
+
+       spark.sql("""
+           SELECT *
+           FROM (
+               SELECT *,
+                      ROW_NUMBER() OVER (PARTITION BY Department ORDER BY Salary DESC) AS rank
+               FROM employees
+           ) ranked
+           WHERE rank <= 2
+       """).show()
+
+Using CASE WHEN Logic:
+
+Classify employees based on salary bands.
+
+       spark.sql("""
+           SELECT Name, Salary,
+                  CASE
+                      WHEN Salary >= 8000 THEN 'High'
+                      WHEN Salary >= 5000 THEN 'Medium'
+                      ELSE 'Low'
+                  END AS SalaryBand
+           FROM employees
+       """).show()
+
+Best Practices:
+
+- Use `WITH` (CTEs) for clarity in multi-step queries.
+- Always check performance of nested queries using `.explain()`.
+- Avoid deep nesting when not necessary — break into steps if needed.
+- Test subqueries independently before nesting.
+
+Mini Quiz (Self-check):
+
+1. What is a CTE and how is it different from a subquery?
+2. How would you get the top N earners per group?
+3. What does `PARTITION BY` do in a window function?
+4. How do you write conditional logic in SQL queries?
