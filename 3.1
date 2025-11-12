@@ -1,0 +1,79 @@
+PySpark Module 3: Working with DataFrames  
+Lesson 3.1 – Introduction to DataFrames
+
+Learning Objective:
+
+- Understand what a DataFrame is in PySpark.
+- Learn how DataFrames differ from RDDs.
+- Explore how to create and inspect DataFrames.
+
+What is a DataFrame:
+
+- A DataFrame is a distributed collection of data organized into named columns.
+- It is conceptually similar to a table in a relational database or an Excel sheet.
+- DataFrames are built on top of RDDs but offer higher-level APIs for data manipulation.
+
+Advantages of DataFrames:
+
+- Easier to use compared to RDDs due to SQL-like operations.
+- Optimized execution using Catalyst optimizer and Tungsten engine.
+- Support for structured data with schema.
+- Better integration with data sources (CSV, JSON, Parquet, Hive, etc.).
+
+Creating DataFrames:
+
+1. From a list of rows with a schema:
+
+       from pyspark.sql import SparkSession
+       spark = SparkSession.builder.appName("Demo").getOrCreate()
+
+       data = [("Alice", 25), ("Bob", 30), ("Charlie", 35)]
+       columns = ["Name", "Age"]
+
+       df = spark.createDataFrame(data, schema=columns)
+
+2. From a CSV file:
+
+       df = spark.read.csv("employees.csv", header=True, inferSchema=True)
+
+3. From a JSON file:
+
+       df = spark.read.json("data.json")
+
+4. From an existing RDD:
+
+       rdd = spark.sparkContext.parallelize([("John", 28), ("Sara", 33)])
+       df = spark.createDataFrame(rdd, ["Name", "Age"])
+
+Inspecting a DataFrame:
+
+- `df.show(n)`: Displays the first n rows (default is 20).
+- `df.printSchema()`: Displays the schema of the DataFrame.
+- `df.columns`: Returns a list of column names.
+- `df.describe()`: Summary statistics for numeric columns.
+
+Example:
+
+       df.show()
+       df.printSchema()
+       print(df.columns)
+       df.describe().show()
+
+Key Differences from RDDs:
+
+- DataFrames have named columns and schema; RDDs are unstructured.
+- DataFrames use Catalyst optimizer; RDDs do not.
+- DataFrames allow SQL-style operations; RDDs require manual functions.
+
+When to Use DataFrames:
+
+- For structured data with known columns.
+- When you want better performance and easier syntax.
+- For analytics, transformations, and visualizations.
+
+Mini Quiz (Self-check):
+
+1. What is the primary difference between RDDs and DataFrames?
+2. Name two ways to create a DataFrame.
+3. What function shows the schema of a DataFrame?
+4. Why are DataFrames generally preferred over RDDs?
