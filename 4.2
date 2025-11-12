@@ -1,0 +1,79 @@
+PySpark Module 4: Joins and Advanced DataFrame Operations  
+Lesson 4.2 – Handling Duplicates and Nulls After Joins
+
+Learning Objective:
+
+- Understand how to handle null values that result from join operations.
+- Learn how to identify and remove duplicate rows after joining.
+- Explore techniques for cleaning and preparing data post-join.
+
+Why Nulls Appear After Joins:
+
+- Nulls appear when there is no matching key in one of the DataFrames during a join.
+- This is expected behavior in left, right, and full outer joins.
+
+Example:
+
+       data1 = [("Alice", 1), ("Bob", 2)]
+       df1 = spark.createDataFrame(data1, ["Name", "DeptID"])
+
+       data2 = [(1, "HR")]
+       df2 = spark.createDataFrame(data2, ["DeptID", "DeptName"])
+
+       result = df1.join(df2, on="DeptID", how="left")
+       result.show()
+
+       # Output will show null in DeptName for "Bob"
+
+Handling Nulls:
+
+1. Fill null values with a default value:
+
+       result.fillna("Unknown").show()
+
+2. Fill nulls in specific columns:
+
+       result.fillna({"DeptName": "Not Assigned"}).show()
+
+3. Drop rows with nulls:
+
+       result.dropna().show()
+
+4. Replace nulls using `na` namespace:
+
+       result.na.fill("Unknown", subset=["DeptName"]).show()
+
+Identifying Duplicates:
+
+- Duplicate rows can be identified using all or selected columns.
+
+       result = df1.join(df2, on="DeptID", how="inner")
+       result = result.union(result)  # Artificially creating duplicates
+       result.show()
+
+       # Count rows before removing duplicates
+       print(result.count())
+
+       # Remove duplicates
+       result_clean = result.dropDuplicates()
+       result_clean.show()
+
+Removing Duplicates Based on Subset:
+
+- You can specify columns to check for duplicates.
+
+       result.dropDuplicates(["Name"]).show()
+
+Best Practices:
+
+- Always validate join keys for nulls or duplicates before performing joins.
+- After join operations, inspect results using `.show()`, `.count()`, and `.distinct()` checks.
+- Use `dropDuplicates()` only when you're sure duplicates are exact and unintended.
+- Use `fillna()` thoughtfully to prevent misleading values.
+
+Mini Quiz (Self-check):
+
+1. Why do nulls appear after a join?
+2. How do you remove nulls from a DataFrame?
+3. What is the difference between `fillna()` and `dropna()`?
+4. How do you remove duplicates from only a few columns?
