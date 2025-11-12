@@ -1,0 +1,83 @@
+PySpark Module 3: Working with DataFrames  
+Lesson 3.2 – DataFrame Operations
+
+Learning Objective:
+
+- Learn how to perform basic and intermediate operations on DataFrames.
+- Understand how to filter, select, sort, and transform DataFrame data.
+- Practice using PySpark’s DataFrame API for data manipulation.
+
+Selecting Columns:
+
+- You can select one or more columns using the `select()` function.
+
+       df.select("Name").show()
+       df.select("Name", "Age").show()
+
+Filtering Rows:
+
+- Use the `filter()` or `where()` function to filter rows based on conditions.
+
+       df.filter(df.Age > 30).show()
+       df.where(df.Name == "Alice").show()
+
+Using Multiple Conditions:
+
+       df.filter((df.Age > 25) & (df.Name != "Bob")).show()
+
+Adding New Columns:
+
+- Use `withColumn()` to add a new column or transform an existing one.
+
+       from pyspark.sql.functions import col
+
+       df.withColumn("AgePlus10", col("Age") + 10).show()
+
+Renaming Columns:
+
+- Use `withColumnRenamed()` to rename a column.
+
+       df.withColumnRenamed("Age", "Years").show()
+
+Dropping Columns:
+
+- Use `drop()` to remove a column.
+
+       df.drop("Age").show()
+
+Sorting Data:
+
+- Use `orderBy()` or `sort()` to sort data.
+
+       df.orderBy("Age").show()
+       df.orderBy(df.Age.desc()).show()
+
+Removing Duplicates:
+
+- Use `dropDuplicates()` to remove duplicate rows.
+
+       df.dropDuplicates().show()
+
+Chaining Multiple Operations:
+
+- You can chain multiple transformations together.
+
+       df.select("Name", "Age") \
+         .filter(col("Age") > 25) \
+         .orderBy("Name") \
+         .show()
+
+Useful DataFrame Methods:
+
+- `df.count()` → returns the number of rows.
+- `df.distinct()` → removes duplicate rows.
+- `df.limit(n)` → returns the first n rows.
+- `df.take(n)` → returns the first n rows as a list.
+- `df.first()` → returns the first row.
+
+Mini Quiz (Self-check):
+
+1. How do you select multiple columns from a DataFrame?
+2. What’s the difference between `filter()` and `withColumn()`?
+3. How do you sort the DataFrame by a column in descending order?
+4. What does `dropDuplicates()` do?
