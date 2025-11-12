@@ -1,0 +1,78 @@
+PySpark Module 4: Joins and Advanced DataFrame Operations  
+Lesson 4.1 – Introduction to Joins in PySpark
+
+Learning Objective:
+
+- Understand the concept of joins in PySpark.
+- Learn how to combine data from multiple DataFrames using join operations.
+- Explore different types of joins: inner, left, right, and full outer.
+
+Why Joins Are Important:
+
+- In real-world data systems, information is often spread across multiple tables or files.
+- Joins help combine this related data based on common keys, enabling richer analysis.
+
+Creating Sample DataFrames:
+
+       data1 = [("Alice", 1), ("Bob", 2), ("Charlie", 3)]
+       dept1 = spark.createDataFrame(data1, ["Name", "DeptID"])
+
+       data2 = [(1, "HR"), (2, "IT"), (4, "Finance")]
+       dept2 = spark.createDataFrame(data2, ["DeptID", "DeptName"])
+
+Inner Join:
+
+- Returns only the rows that have matching keys in both DataFrames.
+
+       result = dept1.join(dept2, on="DeptID", how="inner")
+       result.show()
+
+Left Join (Left Outer Join):
+
+- Returns all rows from the left DataFrame and matched rows from the right.
+- If no match is found, nulls are returned for right DataFrame columns.
+
+       result = dept1.join(dept2, on="DeptID", how="left")
+       result.show()
+
+Right Join (Right Outer Join):
+
+- Returns all rows from the right DataFrame and matched rows from the left.
+
+       result = dept1.join(dept2, on="DeptID", how="right")
+       result.show()
+
+Full Outer Join:
+
+- Returns all rows from both DataFrames.
+- If there is no match, nulls are placed in non-matching columns.
+
+       result = dept1.join(dept2, on="DeptID", how="outer")
+       result.show()
+
+Alias Columns:
+
+- You can rename columns temporarily to avoid confusion.
+
+       from pyspark.sql.functions import col
+
+       dept1.alias("d1").join(dept2.alias("d2"), col("d1.DeptID") == col("d2.DeptID"), "inner").show()
+
+Join on Multiple Columns:
+
+- You can join using multiple keys as a list.
+
+       df1.join(df2, ["key1", "key2"], "inner")
+
+Best Practices:
+
+- Always understand which join type is required.
+- Check for nulls in keys before joining.
+- After joins, inspect row counts and use `.explain()` to understand performance impact.
+
+Mini Quiz (Self-check):
+
+1. What does an inner join return?
+2. What happens in a left join if there’s no match?
+3. What’s the difference between full outer and inner joins?
+4. How do you specify multiple join keys in PySpark?
