@@ -1,0 +1,112 @@
+PySpark Module 2: RDDs and DataFrames
+Lesson 2.2 – Transformations and Actions
+
+Learning Objective:
+
+- Understand what transformations and actions are in RDDs.
+- Learn the key differences between lazy and eager evaluation.
+- Explore common transformation and action functions used in PySpark.
+
+What are Transformations:
+
+- Transformations are operations that create a new RDD from an existing one.
+- They are **lazy**, meaning they are not executed until an action is triggered.
+- Each transformation returns a new RDD and records the lineage (history of operations).
+- Spark optimizes the transformation chain using this lineage before execution.
+
+Common Transformations:
+
+1. map(func):
+   - Applies a function to each element.
+   - Example:
+         rdd = sc.parallelize([1, 2, 3])
+         result = rdd.map(lambda x: x * 2)    # [2, 4, 6]
+
+2. filter(func):
+   - Selects elements that return True for the given function.
+   - Example:
+         rdd = sc.parallelize([1, 2, 3, 4])
+         result = rdd.filter(lambda x: x % 2 == 0)   # [2, 4]
+
+3. flatMap(func):
+   - Like map, but flattens the result.
+   - Example:
+         rdd = sc.parallelize(["hello world"])
+         result = rdd.flatMap(lambda x: x.split(" "))   # ["hello", "world"]
+
+4. distinct():
+   - Removes duplicate elements.
+   - Example:
+         rdd = sc.parallelize([1, 2, 2, 3])
+         result = rdd.distinct()   # [1, 2, 3]
+
+5. union(other_rdd):
+   - Combines two RDDs.
+   - Example:
+         rdd1 = sc.parallelize([1, 2])
+         rdd2 = sc.parallelize([3, 4])
+         result = rdd1.union(rdd2)   # [1, 2, 3, 4]
+
+6. intersection(other_rdd):
+   - Returns common elements.
+   - Example:
+         rdd1 = sc.parallelize([1, 2, 3])
+         rdd2 = sc.parallelize([2, 3, 4])
+         result = rdd1.intersection(rdd2)   # [2, 3]
+
+What are Actions:
+
+- Actions trigger the execution of RDD transformations.
+- They return results or save data to storage.
+- Once an action is called, Spark submits a job to the cluster.
+
+Common Actions:
+
+1. collect():
+   - Returns all elements as a list (use with caution on large RDDs).
+   - Example:
+         rdd = sc.parallelize([1, 2, 3])
+         print(rdd.collect())   # [1, 2, 3]
+
+2. count():
+   - Returns the number of elements.
+   - Example:
+         rdd = sc.parallelize(["a", "b", "c"])
+         print(rdd.count())   # 3
+
+3. first():
+   - Returns the first element.
+   - Example:
+         rdd = sc.parallelize([10, 20, 30])
+         print(rdd.first())   # 10
+
+4. take(n):
+   - Returns the first n elements as a list.
+   - Example:
+         rdd = sc.parallelize([1, 2, 3, 4, 5])
+         print(rdd.take(3))   # [1, 2, 3]
+
+5. reduce(func):
+   - Aggregates elements using a binary function.
+   - Example:
+         rdd = sc.parallelize([1, 2, 3])
+         result = rdd.reduce(lambda x, y: x + y)   # 6
+
+6. saveAsTextFile(path):
+   - Saves RDD as text files in the given path.
+   - Example:
+         rdd = sc.parallelize(["apple", "banana"])
+         rdd.saveAsTextFile("output_dir")
+
+Key Differences:
+
+- Transformations are lazy; actions are eager.
+- Transformations return RDDs; actions return values or write output.
+- You can chain multiple transformations before triggering an action.
+
+Mini Quiz (Self-check):
+
+1. What is the difference between map and flatMap?
+2. Which transformation removes duplicates from an RDD?
+3. What does the collect() action return?
+4. Name two actions that return a numeric result.
