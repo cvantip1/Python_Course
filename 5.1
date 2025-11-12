@@ -1,0 +1,77 @@
+PySpark Module 5: Working with SQL and Temporary Views  
+Lesson 5.1 – Creating and Using SQL Views in PySpark
+
+Learning Objective:
+
+- Understand how to register DataFrames as temporary SQL views.
+- Learn how to run SQL queries on PySpark DataFrames.
+- Practice basic SQL queries in PySpark for analysis.
+
+What is a Temporary View:
+
+- A temporary view is a named SQL-accessible table backed by a DataFrame.
+- It exists only for the current Spark session.
+
+Why Use SQL Views:
+
+- Reuse familiar SQL syntax.
+- Perform complex joins and aggregations using SQL directly.
+- Integrate PySpark with analysts or tools that prefer SQL over DataFrame API.
+
+Creating a Temporary View:
+
+       df.createOrReplaceTempView("employees")
+
+- The view `employees` can now be queried using SQL syntax.
+
+Querying the View:
+
+       result = spark.sql("SELECT Department, AVG(Salary) AS AvgSalary FROM employees GROUP BY Department")
+       result.show()
+
+Dropping a View:
+
+       spark.catalog.dropTempView("employees")
+
+Example – From CSV to SQL View:
+
+       # Step 1: Read CSV
+       df = spark.read.csv("employees.csv", header=True, inferSchema=True)
+
+       # Step 2: Create a view
+       df.createOrReplaceTempView("employees")
+
+       # Step 3: SQL query
+       result = spark.sql("""
+           SELECT Department, COUNT(*) AS TotalEmployees,
+                  AVG(Salary) AS AvgSalary
+           FROM employees
+           WHERE Experience > 3
+           GROUP BY Department
+       """)
+       result.show()
+
+Using SQL with Joins:
+
+       df1.createOrReplaceTempView("df1")
+       df2.createOrReplaceTempView("df2")
+
+       joined = spark.sql("""
+           SELECT df1.id, df1.name, df2.dept_name
+           FROM df1
+           JOIN df2 ON df1.dept_id = df2.dept_id
+       """)
+       joined.show()
+
+Best Practices:
+
+- Use clear and consistent names for views.
+- Always validate that column names exist before querying.
+- Temporary views are session-scoped — they disappear when Spark session ends.
+
+Mini Quiz (Self-check):
+
+1. What method is used to register a temporary SQL view?
+2. How can you delete a temporary view?
+3. What is the advantage of using SQL views in PySpark?
+4. Will temporary views persist across Spark sessions?
