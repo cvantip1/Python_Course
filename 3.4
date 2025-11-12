@@ -1,0 +1,93 @@
+PySpark Module 3: Working with DataFrames  
+Lesson 3.4 – Aggregations and GroupBy in DataFrames
+
+Learning Objective:
+
+- Learn how to perform aggregations using PySpark DataFrame API.
+- Understand how to use groupBy and aggregation functions.
+- Explore common statistical operations like count, avg, min, max, sum.
+
+What is Aggregation:
+
+- Aggregation is the process of combining multiple rows to produce a single result.
+- Examples include counting rows, calculating averages, or summing values.
+
+Basic Aggregation Functions:
+
+- `count()`: Number of non-null rows.
+- `avg()`: Average of a column.
+- `min()`, `max()`: Minimum or maximum value.
+- `sum()`: Total sum of values.
+
+       from pyspark.sql.functions import count, avg, min, max, sum
+
+       df.select(count("*")).show()
+       df.select(avg("Age")).show()
+       df.select(min("Age"), max("Age")).show()
+
+Using groupBy():
+
+- `groupBy()` is used to group rows based on the value of one or more columns.
+
+       df.groupBy("Department").count().show()
+
+       df.groupBy("Department").agg(
+           avg("Salary").alias("AverageSalary"),
+           max("Salary").alias("MaxSalary")
+       ).show()
+
+Example:
+
+       data = [("Alice", "HR", 3000),
+               ("Bob", "HR", 4000),
+               ("Charlie", "IT", 5000),
+               ("David", "IT", 4500),
+               ("Eva", "Finance", 3500)]
+
+       columns = ["Name", "Department", "Salary"]
+       df = spark.createDataFrame(data, columns)
+
+       df.groupBy("Department").agg(
+           avg("Salary").alias("AvgSalary"),
+           sum("Salary").alias("TotalSalary")
+       ).show()
+
+Multiple Aggregations:
+
+- You can perform more than one aggregation on the same group.
+
+       df.groupBy("Department") \
+         .agg(
+             count("Name").alias("HeadCount"),
+             avg("Salary").alias("AvgSalary"),
+             max("Salary").alias("TopSalary")
+         ).show()
+
+Sorting After Aggregation:
+
+       result = df.groupBy("Department") \
+                  .agg(sum("Salary").alias("Total")) \
+                  .orderBy("Total", ascending=False)
+       result.show()
+
+Filtering After Aggregation:
+
+       from pyspark.sql.functions import col
+
+       df.groupBy("Department") \
+         .agg(avg("Salary").alias("AvgSalary")) \
+         .filter(col("AvgSalary") > 4000) \
+         .show()
+
+Best Practices:
+
+- Always use meaningful aliases after aggregation for clarity.
+- Use `orderBy()` to make reports more readable.
+- Filter after aggregation using `col()` references.
+
+Mini Quiz (Self-check):
+
+1. What is the purpose of `groupBy()`?
+2. How do you rename the result of an aggregation?
+3. What function gives you the average of a column?
+4. How do you sort grouped results in descending order?
