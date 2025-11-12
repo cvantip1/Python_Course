@@ -1,0 +1,78 @@
+PySpark Module 2: RDDs and DataFrames
+Lesson 2.1 – Introduction to RDDs
+
+Learning Objective:
+
+- Understand what RDDs (Resilient Distributed Datasets) are in Spark.
+- Learn how RDDs work, how to create them, and their basic properties.
+- Explore the benefits and drawbacks of using RDDs.
+
+What is an RDD:
+
+- RDD stands for Resilient Distributed Dataset.
+- It is the fundamental data structure in Apache Spark.
+- RDDs are immutable, distributed, and fault-tolerant collections of objects.
+- They allow low-level control over data processing across a Spark cluster.
+
+Key Properties of RDDs:
+
+- Resilient: Can recover from node failures using lineage information.
+- Distributed: Data is spread across multiple nodes in the cluster.
+- Immutable: Once created, data inside RDDs cannot be changed (you can create new RDDs from transformations).
+- Lazy Evaluation: Transformations are not executed until an action is called.
+
+Creating RDDs:
+
+There are two common ways to create RDDs:
+
+1. From an existing collection (using parallelize):
+
+       rdd1 = spark.sparkContext.parallelize([1, 2, 3, 4, 5])
+
+2. From an external file (like a text file):
+
+       rdd2 = spark.sparkContext.textFile("path/to/file.txt")
+
+Transformations vs Actions:
+
+- Transformations: Operations that create a new RDD from an existing one. These are lazy.
+  Examples: map(), filter(), flatMap(), distinct()
+
+- Actions: Operations that trigger computation and return a result.
+  Examples: collect(), count(), first(), take(n)
+
+Example:
+
+       rdd = spark.sparkContext.parallelize([1, 2, 3, 4])
+       doubled_rdd = rdd.map(lambda x: x * 2)        # Transformation
+       print(doubled_rdd.collect())                  # Action → Output: [2, 4, 6, 8]
+
+Persistence and Caching:
+
+- RDDs can be cached in memory or persisted to disk for faster reuse.
+- Use .cache() or .persist() to avoid recomputation of the same RDD.
+
+Example:
+
+       rdd = spark.sparkContext.textFile("data.txt")
+       rdd.cache()
+       rdd.count()    # Fast on repeated calls
+
+Advantages of RDDs:
+
+- Fine-grained control over low-level transformations.
+- Supports complex data structures (tuples, key-value pairs).
+- Enables fault tolerance through lineage.
+
+Disadvantages of RDDs:
+
+- No automatic optimization.
+- More verbose syntax compared to DataFrames.
+- Not ideal for structured data with schema.
+
+Mini Quiz (Self-check):
+
+1. What does RDD stand for?
+2. What is the difference between a transformation and an action?
+3. Which method is used to create an RDD from a Python list?
+4. Why would you cache an RDD?
